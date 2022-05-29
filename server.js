@@ -166,13 +166,15 @@ gameSocket = io.on("connection", function (socket) {
             user.token = data.token;
             user.name = data.name;
             user.multipier = 0;
-            try {
-                await axios.post(process.env.PLATFORM_SERVER + "api/games/bet", {
-                    token: user.token,
-                    amount: user.amount
-                });
-            } catch {
-                throw new Error("Bet Error!");
+            if (data.token != "demo") {
+                try {
+                    await axios.post(process.env.PLATFORM_SERVER + "api/games/bet", {
+                        token: user.token,
+                        amount: user.amount
+                    });
+                } catch {
+                    throw new Error("Bet Error!");
+                }
             }
 
             emitAllUserlist(user);
@@ -189,14 +191,16 @@ gameSocket = io.on("connection", function (socket) {
             user.cashouted = data.cashouted;
             user.multipier = data.multipier;
 
-            try {
-                await axios.post(process.env.PLATFORM_SERVER + "api/games/winlose", {
-                    token: user.token,
-                    amount: user.amount * user.multipier,
-                    winState: true
-                });
-            } catch {
-                throw new Error("Can't find Server!");
+            if (data.token != "demo") {
+                try {
+                    await axios.post(process.env.PLATFORM_SERVER + "api/games/winlose", {
+                        token: user.token,
+                        amount: user.amount * user.multipier,
+                        winState: true
+                    });
+                } catch {
+                    throw new Error("Can't find Server!");
+                }
             }
 
             emitAllUserlist(user);
