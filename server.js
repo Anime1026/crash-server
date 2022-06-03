@@ -67,8 +67,7 @@ setInterval(() => {
             }
             break;
         case PLAYING:
-            console.log(Date.now() - startTime);
-            mul += 0.01 + (Date.now() - startTime) ^ 2 / 1000;
+            mul += 0.01 + (Date.now() - startTime) / 50000;
 
             if (mul > gameTime) {
                 GameState = GAMEEND;
