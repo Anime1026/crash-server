@@ -67,7 +67,7 @@ setInterval(() => {
             }
             break;
         case PLAYING:
-            mul += 0.01 + (Date.now() - startTime) / 50000;
+            mul += 0.01 + ((Date.now() - startTime) / 200000) ^ 2;
 
             if (mul > gameTime) {
                 GameState = GAMEEND;
