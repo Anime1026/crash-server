@@ -202,7 +202,6 @@ gameSocket = io.on("connection", function (socket) {
                     throw new Error("Can't find Server!");
                 }
             }
-
             emitAllUserlist(user);
 
             sockets.map((_socket) => {
